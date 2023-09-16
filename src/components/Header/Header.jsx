@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import { useSelector } from "react-redux";
 // import { resetUserInfo } from "../store/userSlice";
-import { clearToken } from "../utils/Token";
+import { clearToken } from "../../utils/Token";
 
-const Header = ({ setSearchResults }) => {
+const Header = () => {
   // State and Hooks
   // const dispatch = useDispatch();
   // const userInfo = useSelector((state) => state.user.userInfo);
@@ -21,16 +21,16 @@ const Header = ({ setSearchResults }) => {
 
   // Handlers
 
-  const handleSearch = (searchTerm) => {
-    fetch(`${apiBaseDomain}/books/book/search?title=${searchTerm}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setSearchResults(data.data.books);
-      })
-      .catch((error) => {
-        console.error("Error searching for books:", error);
-      });
-  };
+  // const handleSearch = (searchTerm) => {
+  //   fetch(`${apiBaseDomain}/books/book/search?title=${searchTerm}`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setSearchResults(data.data.books);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error searching for books:", error);
+  //     });
+  // };
 
   // useEffect(() => {
   //   handleSearch(searchTerm);
@@ -72,14 +72,17 @@ const Header = ({ setSearchResults }) => {
             <Link to="/profile">
               <div className="relative">
                 <img
-                  src="https://microsite.hcltech.com/manufacturing/imro/img/avatar.png"
+                  src="https://avatars.githubusercontent.com/u/62835101?v=4"
                   alt="User Avatar"
                   className="w-10 h-10 rounded-full"
                 />
               </div>
             </Link>
             <div className="ml-2">
-              <button onClick={logout} className="text-gray-600 font-semibold">
+              <button
+                onClick={logout}
+                className="text-white bg-orange-500 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 m-2 mr-2 focus:outline-none "
+              >
                 Log out
               </button>
             </div>
@@ -87,11 +90,17 @@ const Header = ({ setSearchResults }) => {
         )}
         {!isLoggedIn && (
           <div className="ml-2">
-            <Link to="/signup" className="text-gray-600 font-semibold">
+            <Link
+              to="/signup"
+              className="m-2 py-2 px-4 rounded-md duration-200 border-b border-gray-100 hover:bg-gray-100 text-black"
+            >
               Sign Up
             </Link>
-            <span className="mx-1">|</span>
-            <Link to="/signin" className="text-gray-600 font-semibold">
+
+            <Link
+              to="/signin"
+              className="m-2 py-2 px-4 rounded-md duration-200 border-b border-gray-100 hover:bg-gray-100 text-black"
+            >
               Sign In
             </Link>
           </div>

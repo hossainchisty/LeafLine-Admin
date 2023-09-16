@@ -45,7 +45,6 @@ const AddBook = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(":", data);
         if (data.status === 201) {
           toast.success("Book added successfully.");
           setRedirect(true);
