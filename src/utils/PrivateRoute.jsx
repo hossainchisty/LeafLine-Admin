@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import getToken from './Token';
 import { useNavigate } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
-  const token = getToken();
+  const token = window.localStorage.getItem("userInfo");
   const navigate = useNavigate();
 
   useEffect(() => {

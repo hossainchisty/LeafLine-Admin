@@ -9,6 +9,8 @@ import AdminStore from "../pages/Admin/AdminStore";
 import Profile from "../components/Profile/Profile";
 import EmailVerification from "../components/Auth/EmailVerification";
 import Error from "../pages/Error/Error";
+import PageNotFound from "../pages/404/PageNotFound";
+import PrivateRoute from "../utils/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +20,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />,
+        element: (
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        ),
       },
       {
         path: "admin/add",
@@ -46,7 +52,15 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "*",
+        element: <PageNotFound />,
       },
     ],
   },
