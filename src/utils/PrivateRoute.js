@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import getToken from './Token';
+import getToken from "./Token";
 import { useNavigate } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
