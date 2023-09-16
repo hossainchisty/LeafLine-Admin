@@ -8,11 +8,13 @@ import AdminUsers from "../pages/Admin/AdminUsers";
 import AdminStore from "../pages/Admin/AdminStore";
 import Profile from "../components/Profile/Profile";
 import EmailVerification from "../components/Auth/EmailVerification";
+import Error from "../pages/Error/Error";
 
 const router = createBrowserRouter([
   {
     path: "",
     element: <Layout />,
+    errorElement: <Error />,
     children: [
       {
         path: "",
