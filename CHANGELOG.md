@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.2.0...v0.3.0) (2023-09-17)
+
+
+### Features
+
+* Added dynamic properties ([1a548c2](https://github.com/hossainchisty/LeafLine-Admin/commit/1a548c2a43631d89f882dd82fdb299015dac0d7d))
+
+
+
 # [0.2.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.1.0...v0.2.0) (2023-09-16)
 
 
