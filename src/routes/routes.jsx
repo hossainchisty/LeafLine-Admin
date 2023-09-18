@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/Layout";
 import Home from "../components/Home/Home";
-import Signup from "../pages/auth/Signup";
-import Signin from "../pages/auth/Signin";
+import Signup from "../pages/Auth/Signup";
+import Signin from "../pages/Auth/Signin";
 import AddBook from "../pages/Admin/AddBook";
 import AdminUsers from "../pages/Admin/AdminUsers";
 import AdminStore from "../pages/Admin/AdminStore";
