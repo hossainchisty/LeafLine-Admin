@@ -21,7 +21,6 @@ const Signin = () => {
     try {
       const response = await fetch(`${apiBaseDomain}/users/login`, {
         method: "POST",
-        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
