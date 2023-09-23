@@ -1,3 +1,13 @@
+# [0.4.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.3.0...v0.4.0) (2023-09-23)
+
+
+### Features
+
+* Custom components for table ([d11adf8](https://github.com/hossainchisty/LeafLine-Admin/commit/d11adf84a9f105f63accf3087b3edbdf2b9fe54d))
+* implement of RTK Query ([9b0d6c2](https://github.com/hossainchisty/LeafLine-Admin/commit/9b0d6c260cc84036d7426c601f4e562fcd704532))
+
+
+
 # [0.3.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.2.0...v0.3.0) (2023-09-17)
 
 
