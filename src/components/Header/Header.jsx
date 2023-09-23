@@ -1,56 +1,21 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { resetUserInfo } from "../store/userSlice";
+import { Link, useNavigate } from "react-router-dom";
 import { clearToken } from "../../utils/Token";
 
 const Header = () => {
   // State and Hooks
-  // const dispatch = useDispatch();
-  // const userInfo = useSelector((state) => state.user.userInfo);
   const validToken = window.localStorage.getItem("userInfo");
   const isLoggedIn = !!validToken;
-
-  // const [searchTerm, setSearchTerm] = useState("");
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
-  // const location = useLocation();
-
-  // Handlers
-
-  // const handleSearch = (searchTerm) => {
-  //   fetch(`${apiBaseDomain}/books/book/search?title=${searchTerm}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setSearchResults(data.data.books);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error searching for books:", error);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   handleSearch(searchTerm);
-  // }, [searchTerm]);
-
-  // const handleChange = (e) => {
-  //   // Update the searchTerm state when the user types in the input field
-  //   setSearchTerm(e.target.value);
-  // };
 
   function logout() {
     fetch(`${apiBaseDomain}/users/logout`, {
-      credentials: "include",
       method: "POST",
     }).then(() => {
-      // Dispatch the resetUserInfo action to clear the user state
-      // dispatch(resetUserInfo());
       clearToken();
-
-      navigate("/signin"); // Navigate to the signin page after logout
+      navigate("/signin");
     });
   }
 
@@ -106,24 +71,8 @@ const Header = () => {
           </div>
         )}
       </div>
-      {/* Responsive Search Input (conditionally rendered) */}
-      {/* {location.pathname === "/" && (
-        <div className="mt-3 md:flex md:items-center md:justify-center">
-          <input
-            type="text"
-            placeholder="Search books..."
-            className="w-full md:w-64 bg-gray-200 border border-gray-300 rounded-full pl-6 pr-4 py-2 focus:outline-none focus:bg-white text-black"
-            value={searchTerm}
-            onChange={handleChange}
-          />
-        </div>
-      )} */}
     </header>
   );
-};
-
-Header.propTypes = {
-  setSearchResults: PropTypes.func.isRequired,
 };
 
 export default Header;
