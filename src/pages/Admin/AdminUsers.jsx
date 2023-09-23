@@ -1,33 +1,63 @@
-import { useState, useEffect } from "react";
-import { formatISO9075 } from "date-fns";
+import { useGetUsersQuery } from "../../services/userSlice";
 import ClipLoader from "react-spinners/ClipLoader";
+import Table from "../../components/Table/UsersTable";
 
-function AdminUsers() {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
+const AdminUsers = () => {
+  const { data, error, isLoading } = useGetUsersQuery();
 
-  useEffect(() => {
-    // Fetch user data and set it to the users state
-    fetch(`${apiBaseDomain}/users/`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Flatten the nested array structure
-        const flattenedUsers = data.data.flat();
-        setUsers(flattenedUsers);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
-  }, [apiBaseDomain]);
+  const columns = [
+    {
+      Header: "Name",
+      accessor: "full_name",
+    },
+    {
+      Header: "Email",
+      accessor: "email",
+    },
+    {
+      Header: "Join Date",
+      accessor: "createdAt",
+    },
+  ];
+
+  if (error) {
+    return (
+      <div className="flex h-[calc(100vh-80px)] items-center justify-center p-5 w-full bg-white">
+        <div className="text-center">
+          <div className="inline-flex rounded-full bg-red-100 p-4">
+            <div className="rounded-full stroke-red-600 bg-red-200 p-4">
+              <svg
+                className="w-16 h-16"
+                viewBox="0 0 28 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 8H6.01M6 16H6.01M6 12H18C20.2091 12 22 10.2091 22 8C22 5.79086 20.2091 4 18 4H6C3.79086 4 2 5.79086 2 8C2 10.2091 3.79086 12 6 12ZM6 12C3.79086 12 2 13.7909 2 16C2 18.2091 3.79086 20 6 20H14"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M17 16L22 21M22 16L17 21"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+          <h1 className="mt-5 text-[36px] font-bold text-slate-800 lg:text-[50px]">
+            500 - Server error
+          </h1>
+          <p className="text-slate-600 mt-5 lg:text-lg">
+            Oops something went wrong. Try to refresh this page or <br /> feel
+            free to contact us if the problem presists.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   const override = {
     display: "block",
@@ -35,13 +65,13 @@ function AdminUsers() {
     borderColor: "rgba(106, 89, 187, 0.888)",
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
-      <div>
+      <div className="flex flex-col m-10 pt-10">
         {" "}
         <ClipLoader
           color={"rgba(106, 89, 187, 0.888)"}
-          loading={loading}
+          loading={isLoading}
           cssOverride={override}
           size={120}
           aria-label="Loading Spinner"
@@ -51,50 +81,17 @@ function AdminUsers() {
     );
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
   return (
     <div className="flex flex-col m-5 pt-5">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
           <div className="overflow-hidden">
-            <table className="min-w-full text-left text-sm font-light">
-              <thead className="border-b bg-white font-medium">
-                <tr>
-                  <th scope="col" className="px-6 py-4">
-                    Name
-                  </th>
-                  <th scope="col" className="px-6 py-4">
-                    Email
-                  </th>
-                  <th scope="col" className="px-6 py-4">
-                    Join Date
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user) => (
-                  <tr key={user.id} className="border-b bg-neutral-100">
-                    <td className="whitespace-nowrap px-6 py-4">
-                      {user.full_name}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4">
-                      {user.email}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4">
-                      {formatISO9075(new Date(user.createdAt))}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <Table columns={columns} data={data} />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default AdminUsers;
