@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.4.0...v0.5.0) (2023-09-24)
+
+
+### Features
+
+* Implement admin view for order listing feature. ([5d814a7](https://github.com/hossainchisty/LeafLine-Admin/commit/5d814a72f84eefefe804bfdecc73a0e6cfa30a9c))
+
+
+
 # [0.4.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.3.0...v0.4.0) (2023-09-23)
 
 
