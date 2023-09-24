@@ -2,18 +2,26 @@
 import { useState, useEffect } from "react";
 import { formatISO9075 } from "date-fns";
 
-function AdminStore() {
-  const [books, setBooks] = useState([]);
+function AdminOrder() {
+  // Retrieve the token from local storage
+  const getToken = localStorage.getItem("userInfo");
+  const token = getToken.replace(/["']/g, "");
+  const [orders, setOrders] = useState([]);
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    fetch(`${apiBaseDomain}/books/list`)
+    fetch(`${apiBaseDomain}/order/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => response.json())
-      .then((bookInfo) => {
-        setBooks(bookInfo.data.books);
+      .then((orderInfo) => {
+        console.log(orderInfo.data.orders);
+        setOrders(orderInfo.data.orders);
       })
       .catch((error) => {
-        console.error("Error fetching book data:", error);
+        console.error("Error fetching order data:", error);
       });
   }, []);
 
@@ -28,31 +36,50 @@ function AdminStore() {
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  Thumbnail
+                  Email
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  Title
+                  Address(Delivery Address)
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  Price
+                  Total Price
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  featured
+                  Status
                 </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  Created At
+                  Paid
+                </th>
+
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  TRXID
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Order Number
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Order Place At
                 </th>
                 <th
                   scope="col"
@@ -63,31 +90,42 @@ function AdminStore() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {books.map((book) => (
-                <tr key={book.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex-shrink-0 h-20 w-20">
-                      <img
-                        className="h-full w-full object-contain"
-                        src={book.thumbnail}
-                        alt=""
-                      />
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{book.title}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{book.price}</div>
-                  </td>{" "}
+              {orders.map((order) => (
+                <tr key={order.id}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
-                      {book.featured ? "Yes✔" : "No❌"}
+                      {order.customerId.email}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
-                      {formatISO9075(new Date(book.createdAt))}
+                      {order.address}, {order.city}/ {order.postalCode}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">
+                      {order.totalPrice}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">{order.status}</div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">
+                      {order.isPaid ? "Yes✔" : "No❌"}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">
+                      {order.transactionId}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">{order._id}</div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">
+                      {formatISO9075(new Date(order.createdAt))}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -108,4 +146,4 @@ function AdminStore() {
   );
 }
 
-export default AdminStore;
+export default AdminOrder;

@@ -57,7 +57,13 @@ const Analytics = () => {
               {statistics.totalUsers}
             </p>
           </div>
-
+          {/* Analytics Card 3: Total Order */}
+          <div className="bg-white shadow-lg rounded-lg p-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">
+              Total Order
+            </h3>
+            <p className="text-3xl font-bold text-purple-500">500</p>
+          </div>
           {/* Analytics Card 3: Featured Books */}
           <div className="bg-white shadow-lg rounded-lg p-6">
             <h3 className="text-lg font-semibold text-gray-800 mb-2">

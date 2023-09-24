@@ -16,6 +16,14 @@ const Navbar = () => {
           </li>
           <li>
             <Link
+              to="/admin/orders"
+              className="inline-block px-6 py-2 text-white bg-blue-600 rounded-full hover:bg-blue-800 transition duration-300 ease-in-out"
+            >
+              Orders
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/admin/books"
               className="inline-block px-6 py-2 text-white bg-blue-600 rounded-full hover:bg-blue-800 transition duration-300 ease-in-out"
             >

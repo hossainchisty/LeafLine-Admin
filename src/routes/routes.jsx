@@ -11,6 +11,7 @@ import EmailVerification from "../components/Auth/EmailVerification";
 import Error from "../pages/Error/Error";
 import PageNotFound from "../pages/404/PageNotFound";
 import PrivateRoute from "../utils/PrivateRoute";
+import AdminOrder from "../pages/Admin/AdminOrder";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "admin/books",
         element: <AdminStore />,
+      },
+      {
+        path: "admin/orders",
+        element: <AdminOrder />,
       },
       {
         path: "signup",
