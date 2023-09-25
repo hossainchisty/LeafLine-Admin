@@ -1,3 +1,13 @@
+# [0.6.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.5.0...v0.6.0) (2023-09-25)
+
+
+### Features
+
+* Added copytoClipboard feature for transaction id ([97b8cb4](https://github.com/hossainchisty/LeafLine-Admin/commit/97b8cb474b4bbd8234b0e3e1faf4ec723458db69))
+* order status update ([0cdac96](https://github.com/hossainchisty/LeafLine-Admin/commit/0cdac96d274c5bf7c9acd9497c4b034467827045))
+
+
+
 # [0.5.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.4.0...v0.5.0) (2023-09-24)
 
 
@@ -33,15 +43,6 @@
 
 * Added 404 page and private route ([f032279](https://github.com/hossainchisty/LeafLine-Admin/commit/f032279c6588e0b25626855e69a97c5389c6af20))
 * Added error element ([2e3c56c](https://github.com/hossainchisty/LeafLine-Admin/commit/2e3c56c4e4d90b1da58b5e56048530e65032e09c))
-
-
-
-# [0.1.0](https://github.com/hossainchisty/LeafLine-Admin/compare/4a4249de806b63284e4f57b7190446ab93d070ba...v0.1.0) (2023-09-16)
-
-
-### Features
-
-* intial release of leafline admin panel ([4a4249d](https://github.com/hossainchisty/LeafLine-Admin/commit/4a4249de806b63284e4f57b7190446ab93d070ba))
 
 
 
