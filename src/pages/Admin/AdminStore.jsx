@@ -20,7 +20,7 @@ function AdminStore() {
   }, []);
 
   return (
-    <div className="flex flex-col m-5 pt-10">
+    <div className="flex flex-col m-5 pt-10 px-5">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full overflow-hidden sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">

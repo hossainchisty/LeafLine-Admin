@@ -8,9 +8,12 @@ import {
   faClipboard,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import toast from "react-hot-toast";
 
 function AdminOrder() {
   // Retrieve the token from local storage
+  const [updatedStatusMap, setUpdatedStatusMap] = useState({});
+
   const getToken = localStorage.getItem("userInfo");
   const token = getToken.replace(/["']/g, "");
   const [orders, setOrders] = useState([]);
@@ -32,9 +35,36 @@ function AdminOrder() {
       });
   }, []);
 
+  const updateOrderStatus = (orderId) => {
+    const newStatus = updatedStatusMap[orderId];
+    console.log(newStatus);
+
+    fetch(`${apiBaseDomain}/order/${orderId}/update-status`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ newStatus }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        toast.success("Order status updated successfully!");
+      })
+      .catch((error) => {
+        console.error("Error updating order status:", error);
+
+        // Show an error toast notification
+        toast.error("Error updating order status.");
+      });
+  };
+
   return (
-    <div className="flex flex-col m-5 pt-10">
-      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div className="flex flex-col m-5 pt-10 px-5">
+      <div
+        className="overflow-x-auto sm:-mx-6 lg:-mx-8"
+        style={{ overflowX: "hidden" }}
+      >
         <div className="inline-block min-w-full overflow-hidden sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -57,12 +87,7 @@ function AdminOrder() {
                 >
                   Total Price
                 </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                >
-                  Status
-                </th>
+
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -76,17 +101,23 @@ function AdminOrder() {
                 >
                   TRXID
                 </th>
-                <th
+                {/* <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Order Number
-                </th>
+                </th> */}
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Order Place At
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-ceunter text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Status
                 </th>
                 <th
                   scope="col"
@@ -98,7 +129,7 @@ function AdminOrder() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {orders.map((order) => (
-                <tr key={order.id}>
+                <tr key={order._id}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
                       {order.customerId.email}
@@ -114,9 +145,7 @@ function AdminOrder() {
                       {order.totalPrice}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{order.status}</div>
-                  </td>
+
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
                       {order.isPaid ? (
@@ -143,12 +172,36 @@ function AdminOrder() {
                       </button>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  {/* <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{order._id}</div>
-                  </td>
+                  </td> */}
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
                       {formatISO9075(new Date(order.createdAt))}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">
+                      <select
+                        value={updatedStatusMap[order._id] || order.status} // Use updatedStatusMap if available, otherwise use the original status
+                        onChange={(e) =>
+                          setUpdatedStatusMap({
+                            ...updatedStatusMap,
+                            [order._id]: e.target.value,
+                          })
+                        }
+                      >
+                        <option value="Pending">Pending</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Shipped">Shipped</option>
+                        <option value="Delivered">Delivered</option>
+                      </select>
+                      <button
+                        className="ml-2 bg-blue-500 text-white px-1 py-1 rounded-lg"
+                        onClick={() => updateOrderStatus(order._id)}
+                      >
+                        Update
+                      </button>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
