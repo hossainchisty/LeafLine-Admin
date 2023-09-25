@@ -1,6 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { formatISO9075 } from "date-fns";
+import copyToClipboard from "../../utils/copyToClipboard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheck,
+  faClipboard,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 function AdminOrder() {
   // Retrieve the token from local storage
@@ -128,6 +135,12 @@ function AdminOrder() {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
                       {order.transactionId}
+                      <button
+                        className="ml-2 text-indigo-500"
+                        onClick={() => copyToClipboard(order.transactionId)}
+                      >
+                        <FontAwesomeIcon icon={faClipboard} />
+                      </button>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
