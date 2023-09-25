@@ -112,7 +112,17 @@ function AdminOrder() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
-                      {order.isPaid ? "Yes✔" : "No❌"}
+                      {order.isPaid ? (
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          className="text-green-500"
+                        />
+                      ) : (
+                        <FontAwesomeIcon
+                          icon={faTimes}
+                          className="text-red-500"
+                        />
+                      )}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
