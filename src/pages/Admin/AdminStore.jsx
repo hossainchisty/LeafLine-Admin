@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { formatISO9075 } from "date-fns";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 function AdminStore() {
   const [books, setBooks] = useState([]);
@@ -40,6 +42,12 @@ function AdminStore() {
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
+                  Author
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
                   Price
                 </th>
                 <th
@@ -74,15 +82,28 @@ function AdminStore() {
                       />
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="whitespace-nowrap">
                     <div className="text-sm text-gray-900">{book.title}</div>
+                  </td>{" "}
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">{book.author}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{book.price}</div>
                   </td>{" "}
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-4 py-2 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
-                      {book.featured ? "Yes✔" : "No❌"}
+                      {book.featured ? (
+                        <FontAwesomeIcon
+                          icon={faCheck}
+                          className="text-green-500"
+                        />
+                      ) : (
+                        <FontAwesomeIcon
+                          icon={faTimes}
+                          className="text-red-500"
+                        />
+                      )}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
