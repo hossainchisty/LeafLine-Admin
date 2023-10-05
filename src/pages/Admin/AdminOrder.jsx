@@ -66,6 +66,9 @@ function AdminOrder() {
         style={{ overflowX: 'hidden' }}
       >
         <div className='inline-block min-w-full overflow-hidden sm:rounded-lg'>
+          <h3 className='font-bold mb-5 text-gray-800'>
+            Inventory Management{' '}
+          </h3>
           <table className='min-w-full divide-y divide-gray-200'>
             <thead className='bg-gray-50'>
               <tr>
@@ -183,27 +186,33 @@ function AdminOrder() {
                   <td className='px-6 py-4 whitespace-nowrap'>
                     <div className='text-sm text-gray-900'>
                       <select
-                        value={updatedStatusMap[order._id] || order.status} // Use updatedStatusMap if available, otherwise use the original status
-                        onChange={(e) =>
-                          setUpdatedStatusMap({
-                            ...updatedStatusMap,
-                            [order._id]: e.target.value,
-                          })
-                        }
+                        value={updatedStatusMap[order._id] || order.status}
+                        onChange={(e) => {
+                          if (e.target.value !== 'Delivered') {
+                            setUpdatedStatusMap({
+                              ...updatedStatusMap,
+                              [order._id]: e.target.value,
+                            });
+                          }
+                        }}
+                        disabled={updatedStatusMap[order._id] === 'Delivered'}
                       >
                         <option value='Pending'>Pending</option>
                         <option value='Processing'>Processing</option>
                         <option value='Shipped'>Shipped</option>
                         <option value='Delivered'>Delivered</option>
                       </select>
-                      <button
-                        className='ml-2 bg-blue-500 text-white px-1 py-1 rounded-lg'
-                        onClick={() => updateOrderStatus(order._id)}
-                      >
-                        Update
-                      </button>
+                      {updatedStatusMap[order._id] !== 'Delivered' && (
+                        <button
+                          className='ml-2 bg-blue-500 text-white px-1 py-1 rounded-lg'
+                          onClick={() => updateOrderStatus(order._id)}
+                        >
+                          Update
+                        </button>
+                      )}
                     </div>
                   </td>
+
                   <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
                     <button className='text-indigo-600 hover:text-indigo-900'>
                       Edit
