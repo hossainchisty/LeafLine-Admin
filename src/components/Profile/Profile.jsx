@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import LoadingIndicator from '../../shared/Loading/LoadingIndicator';
 
 function Profile() {
@@ -6,12 +6,10 @@ function Profile() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
+  const getToken = localStorage.getItem('userInfo');
+  const token = getToken.replace(/["']/g, '');
 
-  useEffect(() => {
-    // Retrieve the token from local storage
-    const getToken = localStorage.getItem('userInfo');
-    const token = getToken.replace(/["']/g, '');
-
+  const fetchUser = useCallback(() => {
     fetch(`${apiBaseDomain}/users/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -32,7 +30,11 @@ function Profile() {
       .finally(() => {
         setLoading(false);
       });
-  }, [apiBaseDomain]);
+  }, [apiBaseDomain, token]);
+
+  useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
 
   if (loading) {
     return <LoadingIndicator />;
