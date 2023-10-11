@@ -1,8 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useMemo } from 'react';
 import LoadingIndicator from '../../shared/Loading/LoadingIndicator';
+import { useCallback } from 'react';
 
 const Analytics = () => {
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
+  const getToken = localStorage.getItem('userInfo');
+  const token = getToken.replace(/["']/g, '');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [statistics, setStatistics] = useState({
@@ -11,12 +14,8 @@ const Analytics = () => {
     totalUsers: 0,
     featuredBooks: 0,
   });
-  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
-  useEffect(() => {
-    // Retrieve the token from local storage
-    const getToken = localStorage.getItem('userInfo');
-    const token = getToken.replace(/["']/g, '');
+  const fetchAnalytics = useCallback(() => {
     fetch(`${apiBaseDomain}/analytics`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -41,7 +40,11 @@ const Analytics = () => {
         setError(error);
         setIsLoading(false);
       });
-  }, []);
+  }, [apiBaseDomain, token]);
+
+  useEffect(() => {
+    fetchAnalytics();
+  }, [fetchAnalytics]);
 
   const analyticsCards = useMemo(() => {
     return (
