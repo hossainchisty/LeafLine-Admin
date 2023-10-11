@@ -1,3 +1,12 @@
+## [0.6.2](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.6.1...v0.6.2) (2023-10-11)
+
+
+### Performance Improvements
+
+* improve performance by using useCallback ([dd2c8a6](https://github.com/hossainchisty/LeafLine-Admin/commit/dd2c8a608f974fd11e88fa067e1790d011826440))
+
+
+
 ## [0.6.1](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.6.0...v0.6.1) (2023-10-11)
 
 
@@ -33,15 +42,6 @@
 
 * Custom components for table ([d11adf8](https://github.com/hossainchisty/LeafLine-Admin/commit/d11adf84a9f105f63accf3087b3edbdf2b9fe54d))
 * implement of RTK Query ([9b0d6c2](https://github.com/hossainchisty/LeafLine-Admin/commit/9b0d6c260cc84036d7426c601f4e562fcd704532))
-
-
-
-# [0.3.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.2.0...v0.3.0) (2023-09-17)
-
-
-### Features
-
-* Added dynamic properties ([1a548c2](https://github.com/hossainchisty/LeafLine-Admin/commit/1a548c2a43631d89f882dd82fdb299015dac0d7d))
 
 
 
