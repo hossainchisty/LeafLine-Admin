@@ -1,56 +1,56 @@
-import { useGetUsersQuery } from "../../services/userSlice";
-import ClipLoader from "react-spinners/ClipLoader";
-import Table from "../../components/Table/UsersTable";
+import { useGetUsersQuery } from '../../services/userSlice';
+import Table from '../../components/Table/UsersTable';
+import LoadingIndicator from '../../shared/Loading/LoadingIndicator';
 
 const AdminUsers = () => {
   const { data, error, isLoading } = useGetUsersQuery();
 
   const columns = [
     {
-      Header: "Name",
-      accessor: "full_name",
+      Header: 'Name',
+      accessor: 'full_name',
     },
     {
-      Header: "Email",
-      accessor: "email",
+      Header: 'Email',
+      accessor: 'email',
     },
     {
-      Header: "Join Date",
-      accessor: "createdAt",
+      Header: 'Join Date',
+      accessor: 'createdAt',
     },
   ];
 
   if (error) {
     return (
-      <div className="flex h-[calc(100vh-80px)] items-center justify-center p-5 w-full bg-white">
-        <div className="text-center">
-          <div className="inline-flex rounded-full bg-red-100 p-4">
-            <div className="rounded-full stroke-red-600 bg-red-200 p-4">
+      <div className='flex h-[calc(100vh-80px)] items-center justify-center p-5 w-full bg-white'>
+        <div className='text-center'>
+          <div className='inline-flex rounded-full bg-red-100 p-4'>
+            <div className='rounded-full stroke-red-600 bg-red-200 p-4'>
               <svg
-                className="w-16 h-16"
-                viewBox="0 0 28 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+                className='w-16 h-16'
+                viewBox='0 0 28 28'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
               >
                 <path
-                  d="M6 8H6.01M6 16H6.01M6 12H18C20.2091 12 22 10.2091 22 8C22 5.79086 20.2091 4 18 4H6C3.79086 4 2 5.79086 2 8C2 10.2091 3.79086 12 6 12ZM6 12C3.79086 12 2 13.7909 2 16C2 18.2091 3.79086 20 6 20H14"
+                  d='M6 8H6.01M6 16H6.01M6 12H18C20.2091 12 22 10.2091 22 8C22 5.79086 20.2091 4 18 4H6C3.79086 4 2 5.79086 2 8C2 10.2091 3.79086 12 6 12ZM6 12C3.79086 12 2 13.7909 2 16C2 18.2091 3.79086 20 6 20H14'
                   strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                 />
                 <path
-                  d="M17 16L22 21M22 16L17 21"
+                  d='M17 16L22 21M22 16L17 21'
                   strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                 />
               </svg>
             </div>
           </div>
-          <h1 className="mt-5 text-[36px] font-bold text-slate-800 lg:text-[50px]">
+          <h1 className='mt-5 text-[36px] font-bold text-slate-800 lg:text-[50px]'>
             500 - Server error
           </h1>
-          <p className="text-slate-600 mt-5 lg:text-lg">
+          <p className='text-slate-600 mt-5 lg:text-lg'>
             Oops something went wrong. Try to refresh this page or <br /> feel
             free to contact us if the problem presists.
           </p>
@@ -59,33 +59,15 @@ const AdminUsers = () => {
     );
   }
 
-  const override = {
-    display: "block",
-    margin: "0 auto",
-    borderColor: "rgba(106, 89, 187, 0.888)",
-  };
-
   if (isLoading) {
-    return (
-      <div className="flex flex-col m-10 pt-10">
-        {" "}
-        <ClipLoader
-          color={"rgba(106, 89, 187, 0.888)"}
-          loading={isLoading}
-          cssOverride={override}
-          size={120}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      </div>
-    );
+    return <LoadingIndicator />;
   }
 
   return (
-    <div className="flex flex-col m-5 pt-5">
-      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-          <div className="overflow-hidden">
+    <div className='flex flex-col m-5 pt-5'>
+      <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
+        <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
+          <div className='overflow-hidden'>
             <Table columns={columns} data={data} />
           </div>
         </div>
