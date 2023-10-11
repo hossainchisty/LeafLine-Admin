@@ -1,67 +1,41 @@
-import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { faker } from "@faker-js/faker";
-import Analytics from "../Analytics/Analytics";
-import Navbar from "../Navbar/Navbar";
+/* eslint-disable no-unused-vars */
+import Chart from 'react-apexcharts';
+import Analytics from '../Analytics/Analytics';
+import Navbar from '../Navbar/Navbar';
+import { useState } from 'react';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "Monthly Sales Growth",
-    },
-  },
-};
-
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Dataset 2",
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
 const Home = () => {
+  const [chartData, setChartData] = useState({
+    options: {
+      chart: {
+        id: 'apexchart-example',
+      },
+      xaxis: {
+        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+      },
+    },
+    series: [
+      {
+        name: 'series-1',
+        data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+      },
+    ],
+  });
   return (
-    <div className="container mx-auto px-4 py-6">
-      <h1 className="text-3xl font-semibold text-gray-800 mb-2">Dashboard</h1>
+    <div className='container mx-auto px-4 py-6'>
+      <h1 className='text-3xl font-semibold text-gray-800 mb-2'>Dashboard</h1>
       <Navbar />
       <Analytics />
-      <Line options={options} data={data} />
+
+      <div className='mt-7'>
+        <Chart
+          options={chartData.options}
+          series={chartData.series}
+          type='bar'
+          width={1250}
+          height={500}
+        />
+      </div>
     </div>
   );
 };
