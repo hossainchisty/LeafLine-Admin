@@ -1,3 +1,12 @@
+## [0.6.1](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.6.0...v0.6.1) (2023-10-11)
+
+
+### Performance Improvements
+
+* improve code performance by useing useCallback ([aae3e21](https://github.com/hossainchisty/LeafLine-Admin/commit/aae3e210ca31a13b6f9ee3fa21b9c8d71630c31a))
+
+
+
 # [0.6.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.5.0...v0.6.0) (2023-09-25)
 
 
@@ -33,16 +42,6 @@
 ### Features
 
 * Added dynamic properties ([1a548c2](https://github.com/hossainchisty/LeafLine-Admin/commit/1a548c2a43631d89f882dd82fdb299015dac0d7d))
-
-
-
-# [0.2.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.1.0...v0.2.0) (2023-09-16)
-
-
-### Features
-
-* Added 404 page and private route ([f032279](https://github.com/hossainchisty/LeafLine-Admin/commit/f032279c6588e0b25626855e69a97c5389c6af20))
-* Added error element ([2e3c56c](https://github.com/hossainchisty/LeafLine-Admin/commit/2e3c56c4e4d90b1da58b5e56048530e65032e09c))
 
 
 
