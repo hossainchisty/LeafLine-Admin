@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.6.2...v0.7.0) (2023-10-18)
+
+
+### Features
+
+* Get monthly sales charts ([9fab518](https://github.com/hossainchisty/LeafLine-Admin/commit/9fab51883fe1338e697800a7930cc8e3047681ce)), closes [#2](https://github.com/hossainchisty/LeafLine-Admin/issues/2)
+
+
+
 ## [0.6.2](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.6.1...v0.6.2) (2023-10-11)
 
 
@@ -32,16 +41,6 @@
 ### Features
 
 * Implement admin view for order listing feature. ([5d814a7](https://github.com/hossainchisty/LeafLine-Admin/commit/5d814a72f84eefefe804bfdecc73a0e6cfa30a9c))
-
-
-
-# [0.4.0](https://github.com/hossainchisty/LeafLine-Admin/compare/v0.3.0...v0.4.0) (2023-09-23)
-
-
-### Features
-
-* Custom components for table ([d11adf8](https://github.com/hossainchisty/LeafLine-Admin/commit/d11adf84a9f105f63accf3087b3edbdf2b9fe54d))
-* implement of RTK Query ([9b0d6c2](https://github.com/hossainchisty/LeafLine-Admin/commit/9b0d6c260cc84036d7426c601f4e562fcd704532))
 
 
 
