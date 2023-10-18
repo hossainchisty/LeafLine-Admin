@@ -16,7 +16,7 @@ const Analytics = () => {
   });
 
   const fetchAnalytics = useCallback(() => {
-    fetch(`${apiBaseDomain}/analytics`, {
+    fetch(`${apiBaseDomain}/admin`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
