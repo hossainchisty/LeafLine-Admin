@@ -7,43 +7,9 @@ The LeafLine Book Store is an online platform that aims to provide a user-friend
 
 #### The LeafLine Book Store application will provide the following features:
 
-- User Registration and Authentication
-- Email Verification
-- Password reset functionality
-- Book Browsing and Searching
-- Book Details and Purchase
-- User Profile Management
-- Store Analytics, Book Addition, Modification, and Deletion (Admin)
-
 **1. Functional Requirements**
 
-**1.1 Authentication and User Management**
-
-- Users can register for an account by providing a unique username, email, and password.
-- Users can log in using their registered email and password.
-- Users can log out of their accounts.
-- User passwords will be securely hashed and stored.
-
-**1.2 Book Browsing and Searching**
-
-- Users can view a list of available books.
-- Users can search for books using keywords.
-- Users can view details of a specific book.
-
-**1.3 Book Details and Purchase**
-
-- Users can view detailed information about a book, including title, author, description, and price.
-- Users can add books to their cart for purchase.
-- Users can view their cart and update quantities or remove items.
-- Users can proceed to checkout to complete the purchase using a secure payment gateway.
-
-**1.4 User Profile Management**
-
-- Users can view their profile information, including username and email.
-- Users can update their profile information.
-- Users can view their order history.
-
-**1.5 Admin Functions**
+**1.1 Admin Functions**
 
 - Admin can visualize store statistics.
 - Admin users can add new books to the store with details such as title, author, description, and price.
